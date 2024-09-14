@@ -634,6 +634,7 @@ services:
       - test2
       - all
 
+
   grafana:
     image: grafana/grafana:10.2.3-ubuntu
     container_name: grafana
