@@ -26,6 +26,7 @@
     <name>hadoop.proxyuser.*.hosts</name>
     <value>*</value>
 </property>
+
 <property>
     <name>hadoop.proxyuser.*.groups</name>
     <value>*</value>
