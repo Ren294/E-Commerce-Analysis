@@ -3,6 +3,7 @@ filebeat.inputs:
   enabled: true
   paths:
   - /opt/spark/logs/*.log
+  
 #   fields:
 #     log_type: spark_logs
 #   fields_under_root: true
