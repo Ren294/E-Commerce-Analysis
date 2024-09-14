@@ -19,3 +19,13 @@ fi
 if [ -d spark/data/checkpoint ]; then
     rm -r spark/data/*
 fi
+
+kaggle datasets download -d ren294/ecommerce-clickstream-transactions && \
+unzip ecommerce-clickstream-transactions.zip -d ecommerce-clickstream-transactions && \
+mv ecommerce-clickstream-transactions/* nifi/data/ && \
+rm -rf ecommerce-clickstream-transactions.zip ecommerce-clickstream-transactions
+
+kaggle datasets download -d ren294/access-log-ecommerce && \
+unzip access-log-ecommerce.zip -d access-log-ecommerce && \
+mv access-log-ecommerce/* nifi/data/ && \
+rm -rf access-log-ecommerce.zip access-log-ecommerce
