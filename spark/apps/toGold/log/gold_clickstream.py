@@ -20,6 +20,7 @@ schema = StructType([
 ])
 
 clickstream_log_path = "hdfs://namenode:9000/data/silver/click"
+
 df_clickstream = spark.read.csv(clickstream_log_path, schema=schema)
 
 df_clickstream.write \
