@@ -87,6 +87,7 @@ run_fact_orders = create_ssh_task(
 
 # run_fact_closed_deals = create_ssh_task(
 #     'run_fact_closed_deals', f'{dir}/gold_fact_closed_deals.py')
+
 run_dim_dates = create_ssh_task(
     'run_dim_dates', f'{dir}/gold_dim_dates.py')
 run_dim_mql = create_ssh_task(
