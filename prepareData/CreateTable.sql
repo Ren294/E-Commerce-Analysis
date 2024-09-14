@@ -97,6 +97,3 @@ CREATE TABLE Reviews (
     review_answer_timestamp DATETIME,
     FOREIGN KEY (order_id) REFERENCES Orders(order_id)
 );
-
-
-
