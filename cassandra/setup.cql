@@ -8,6 +8,7 @@ CREATE TABLE IF NOT EXISTS logs (
   bytes_sent TEXT,
   PRIMARY KEY (ip_address, timestamp, request_path)
 );
+
 CREATE TABLE IF NOT EXISTS clicks (
     timestamp TEXT,
     log_level TEXT,
