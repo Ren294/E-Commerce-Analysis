@@ -20,6 +20,8 @@ if [ -d spark/data/checkpoint ]; then
     rm -r spark/data/*
 fi
 
+pip install -q kaggle
+
 kaggle datasets download -d ren294/ecommerce-clickstream-transactions && \
 unzip ecommerce-clickstream-transactions.zip -d ecommerce-clickstream-transactions && \
 mv ecommerce-clickstream-transactions/* nifi/data/ && \
