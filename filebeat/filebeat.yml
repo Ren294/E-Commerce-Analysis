@@ -1,0 +1,20 @@
+filebeat.inputs:
+- type: log
+  enabled: true
+  paths:
+  - /opt/spark/logs/*.log
+#   fields:
+#     log_type: spark_logs
+#   fields_under_root: true
+
+# - type: log
+#   enabled: true
+#   paths:
+#   - /opt/spark/logs/*click.log
+#   fields:
+#     log_type: spark_clicks
+#   fields_under_root: true
+
+output.logstash:
+  hosts: ["http://logstash:5044"]
+
