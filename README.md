@@ -105,10 +105,20 @@ A comprehensive monitoring and logging system is integrated into the architectur
   
 - **Apache Airflow UI** is used for scheduling and monitoring batch jobs. The Airflow UI allows visualization of DAGs (Directed Acyclic Graphs), tracking job statuses, scheduling intervals, and monitoring task failures or successes.
 
+# Data Warehouse Architecture in the Gold Layer
+
+The Gold Layer in a data lakehouse architecture represents the final, refined stage where clean, processed, and analytics-ready data is stored. This layer is specifically designed for consumption by business intelligence tools, data scientists, and analysts. In the context of an eCommerce Data Warehouse, the Gold Layer is where critical business metrics, aggregated datasets, and key insights are stored in an optimized format.
+
+The schema DataWarehouse:
+
+  <center>
+      <img src="image/schemaWarehouse.jpeg" width="1200" />
+  </center>
+
 # Technologies Used
 The Data Lakehouse architecture implemented in this project leverages a range of modern technologies to efficiently manage, process, and analyze data from various sources. The following sections provide a detailed overview of the technologies used in each aspect of the system, including data ingestion, processing, storage, analytics, and monitoring.
 
-  ## Data Ingestion and Integration
+## Data Ingestion and Integration
   
 - **Apache NiFi**: NiFi supports real-time data streaming, flexible routing, data transformation, and error handling.
   
@@ -170,6 +180,7 @@ To deploy and run this Data Lakehouse project, the following system requirements
 - **Storage**: 50 GB of free storage space.
   
 ### Software
+
 - **Operating System**: A Linux-based OS supporting ARM64 architecture.
   
 - **Docker**: Pre-installed to run all components in isolated containers.
@@ -310,6 +321,11 @@ Once the infrastructure is set up and data is flowing through the system, you ca
 
 - Open the Airflow Web UI by navigating to http://localhost:8080 in your browser
 
+- Login with
+
+  - **Username**: *ren294*
+  - **Password**: *ren294*
+
 - You’ll need to set up a few essential connections for your Spark, HDFS, and Sqoop environments. Start by adding a new connection in the Airflow UI and use the following details:
 
   - **Spark Server Connection**:
@@ -426,18 +442,292 @@ To visualize and analyze your processed data, follow these detailed steps to set
 
 - Click `OK` to establish the connection. Once connected, Power BI will prompt you to select the data tables or views you want to load. Choose the relevant tables or datasets that you want to visualize.
 
-**3.3. Import Report Template:**
-To quickly start with predefined visualizations, load an existing Power BI Template file (.pbit). 
+**3.3. Import the Power BI Template (.pbit):**
+- Click on `File` in the `Power BI` ribbon.
 
-- Click on File, then Import, and select Power BI Template. Browse to this [location](powerbi) and load it into Power BI.
+- Select `Import` from the drop-down menu.
 
-- This file will include pre-configured reports and visualizations tailored to your data.
+- Choose `Power BI Template`.
+
+- Browse to the [location](powerbi) of the provided `.pbit` file, which contains the predefined visualizations for your project.
+
+**3.4. Explore the Three Pre-configured Pages:**
+
+- **Warehouse Page**: This page displays metrics related to your data warehouse, including product sales, order status distributions, and financial summaries like total revenue and freight costs. 
 
     <center>
-        <img src="image/connectPowerBI.jpeg" width="900" />
+        <img src="image/PowerBIEcom.jpeg" width="900" />
     </center>
 
-**3.4. Review and Customize Reports:**
-After loading the template, review the imported reports and dashboards. Customize them as needed to fit your specific analysis requirements. You can modify visuals, add new data fields, and adjust filters to create insightful and interactive reports.
+- **Log Page**: This page focuses on server access logs and system performance, providing insights into website traffic, error rates, and server activity.
 
+     <center>
+        <img src="image/PowerBILog.jpeg" width="900" />
+    </center>
+
+- **ClickStream Page**: On this page, you’ll find detailed analytics on user behavior from the clickstream data.
+
+    <center>
+        <img src="image/powerBIClickStream.jpeg" width="900" />
+    </center> 
+
+### 4. Access and Analyze Data with Jupyter Notebook
+
+For more advanced data analysis and machine learning tasks, you can use Jupyter Notebook, which provides an interactive environment for working with your eCommerce data. Here's how to set up and access `Jupyter Notebook` within the Docker environment:
+
+**4.1. Run get-token.sh to Retrieve Access Token:**
+- First, you need to retrieve the `Jupyter` access token by running the following script inside the `Docker container`:
+
+  ```
+  ./get-token.sh
+  ```
+  
+  - This script will print a URL containing the token that you’ll need to log in to `Jupyter Notebook`.
+
+**4.2. Open Port 9999:**
+- You can access `Jupyter Notebook` by navigating to:
+
+  ```
+  http://localhost:9999
+  ```
+
+- Paste the token generated by `get-token.sh` when prompted.
+
+    <center>
+        <img src="image/JupyterLogin.png" width="600" />
+    </center>
+
+**4.3. Open the Preconfigured Notebook:**
+- After logging into `Jupyter Notebook`, navigate to the `work/analysis.ipynb` file. 
+
+    <center>
+        <img src="image/Jupyter.png" width="900" />
+    </center>
+
+**4.4. Create a New Notebook (Optional):**
+- If you want to create a new analysis file, click on `New` in the `Jupyter dashboard`, and select `Python 3` to start a new notebook.
+  
+- Save your new notebook in the work/ directory to maintain consistency with the project structure:
+
+  ```
+  work/new_analysis.ipynb
+  ```
+
+### 5. Access and Visualize Data with Grafana
+
+Grafana is used in this project to visualize the data stored in Cassandra. Follow these steps to access Grafana, connect it to Cassandra, and either use a pre-built dashboard or create your own custom visualizations:
+
+**5.1. Open Grafana by Accessing Port 3000:**
+
+- Ensure that port 3000 is exposed in your Docker setup, which is used for Grafana.
+
+- Navigate to the following URL in your browser to access Grafana:
+
+  ```
+  http://localhost:3000
+  ```
+
+**5.2. Log in to Grafana:**
+
+- Use the default credentials:
+  
+  - **Username**: *admin*
+
+  - **Password**: *admin*
+
+- After logging in for the first time, you may be prompted to change the password. You can either update it or continue with the default password.
+
+**5.3. Create a New Data Source Connection with Cassandra::**
+
+- In `Grafana`’s main menu, click on `Configuration` and then `Data Sources`.
+
+- Click `Add data source` and search for `Cassandra`.
+
+- Configure the connection with your `Cassandra database`:
+
+  - **Host**: *cassandra1:9042,cassandra1:9042*
+  - **Port**: 9042
+  - **Keyspace**: log_data
+
+      <center>
+          <img src="image/GrafanaConnect.png" width="900" />
+      </center>
+
+- Save and test the connection to ensure that `Grafana` can access `Cassandra`.
+
+**5.4. Import a Pre-built Dashboard:**
+
+- To quickly visualize your data, import a pre-built dashboard that has been specifically designed for this project:
+
+  - In the left sidebar, click `Dashboard` and then `Manage`.
+  
+  - Click on `Import` and upload the [template file](grafanaTemplate), which contains predefined charts and metrics for monitoring Cassandra data.
+
+- The following dashboards will be available:
+
+  - **ClickStreamEcom Dashboard**: This dashboard visualizes user interactions with the eCommerce platform, including page views, product clicks, and purchase patterns.
+
+      <center>
+          <img src="image/GrafanaClickStreamEcom.jpeg" width="900" />
+      </center>
+  
+  - **LogEcom Dashboard**: This dashboard provides insights into server logs, helping you monitor system performance and user access patterns.
+
+      <center>
+          <img src="image/GrafanaLogEcom.jpeg" width="900" />
+      </center>
+
+**5.5. Create Your Own Custom Dashboard (Optional):**
+
+- If you prefer to build your own dashboard, follow these steps:
+
+  - Click on `Dashboard` → `New Dashboard`.
+  
+  - Select `Add New Panel` and choose the type of chart (e.g., bar chart, time series, pie chart) that you want to create.
+  
+  - Configure the panel by selecting `Cassandra` as the data source, and write CQL queries to pull the data you want to visualize.
+  
+  - Customize your panels with labels, filters, and other options, then save the dashboard.
+
+### 6. Visualization with Kibana
+
+- `Kibana` is used in this project for visualizing data ingested into `Elasticsearch`, such as server logs and application metrics from the eCommerce platform.
+
+**6.1. Steps to Access Kibana**:
+
+- Open Kibana on Port 5601: [http://localhost:5601](http://localhost:5601)
+
+- Kibana Interface: Once Kibana is opened, you’ll see the Kibana interface, which provides various tools for visualizing and exploring your data.
+
+**6.1. Create Index Pattern in Kibana:**
+
+- Set up Index Patterns:
+  
+  - In the `Kibana` interface, click on `Management` from the left sidebar.
+    
+  - Under `Kibana`, click `Index Patterns`.
+    
+  - Click `Create index pattern` to define how `Kibana` recognizes your `Elasticsearch` indices.
+    
+  - Enter the name of your index.
+    
+  - Choose a `Time Field` (for example, @timestamp) that `Kibana` will use for time-based visualizations.
+    
+  - Click Create `Index Pattern`.
+
+      <center>
+          <img src="image/KibanaIndexPattern.png" width="900" />
+      </center>
+
+**6.2. Create a Dashboard in Kibana:**
+
+- Create `Visualizations`:
+
+  - From the left-hand menu, click `Visualize`.
+    
+  - Click `Create New Visualization` and choose the type of chart (e.g., bar chart, pie chart, line graph, etc.).
+    
+  - Select your `index pattern` (e.g., log-ecommerce-*), and write queries or apply filters to visualize the data you are interested in (e.g., logs filtered by status codes, user access by city, etc.).
+    
+  -  You can use the `Discover tab` to explore your data and understand what fields are available for visualizations.
+
+      <center>
+          <img src="image/Kibana.png" width="900" />
+      </center>
+
+## Monitoring
+
+In a complex data lakehouse architecture, monitoring the system components is essential for ensuring smooth operation and quickly identifying and resolving issues. The following are key tools used to monitor different components in this setup:
+
+### 1. Monitoring Batch Jobs with Airflow Web UI
+
+Airflow is used to schedule and manage batch jobs that execute the ETL (Extract, Transform, Load) pipelines. The Airflow Web UI provides a centralized interface for monitoring the execution of these jobs.
+
+- **DAG Overview**: You will see a list of Directed Acyclic Graphs (DAGs), representing the batch jobs. Each DAG shows the last execution status: success, failure, or pending.
+
+    <center>
+        <img src="image/MonitoringDagAirflow.png" width="900" />
+    </center>
+
+- **Task Monitoring**: Click on a DAG to view the individual tasks within that workflow. You can check:
+  - **Task status**: Green for success, red for failure, yellow for in progress.
+  - **Task duration**: Helps in identifying bottlenecks.
+  - **Logs**: For each task, detailed logs are available for debugging.
+ 
+    <center>
+        <img src="image/MonitoringTaskAirflow.png" width="900" />
+    </center> 
+
+### 2. Monitoring Kafka with Redpanda Console
+
+Kafka is used for handling real-time data streaming, and Redpanda Console offers a robust monitoring interface to observe Kafka’s performance.
+
+- **Access Redpanda Console**: Use the Redpanda UI to monitor Kafka. Redpanda Console provides visibility into Kafka topics, partitions, producers, consumers, and their latencies.
+
+    <center>
+        <img src="image/RedpandaOverview.jpeg" width="900" />
+    </center> 
+
+- **Key Metrics**:
+
+  - **Consumer Lag**: Check for any delays in data processing by consumers.
+
+  - **Topic Monitoring**: Ensure data is flowing into the correct topics.
+
+  - **Broker Health**: Monitor Kafka brokers to ensure they are running without performance issues.
+  
+    <center>
+        <img src="image/RedpandaTopic.jpeg" width="900" />
+    </center>
+    
+- **Topic Management**: You can create, delete, or configure Kafka topics directly from the console.
+
+### 3. Monitoring Data Flow Processors with NiFi Web UI
+
+Apache NiFi manages the flow of data through various sources and sinks in real-time. The NiFi Web UI provides an intuitive interface to monitor and manage data flows.
+
+- **Open NiFi Web UI**: Navigate to http://localhost:8443/nifi to access the NiFi dashboard (introduced in [Configure and Run Apache NiFi](#Configure-and-Run-Apache-NiFi)).
+  
+- **Processor Status**: View each processor's status to see if it’s running, stopped, or encountering errors.
+  
+- **Data Provenance**: This feature allows you to trace the lifecycle of any data passing through the NiFi flow. It’s useful for debugging data anomalies.
+  
+- **Back Pressure**: Monitor back pressure on queues to ensure data is being processed without delay. If back pressure is high, NiFi might need tuning or resource adjustments.
+
+### 4. Monitoring Spark Streaming with Kibana
+
+Spark Streaming processes real-time data and logs can be visualized and monitored using Kibana, a part of the ELK Stack (Elasticsearch, Logstash, Kibana).
+
+- **Access Kibana**: Open the Kibana dashboard by navigating to http://localhost:5601 (introduced in [Configure and Visualization with Kibana](#Visualization-with-Kibana)).
+  
+- **Create Index Pattern**: Create an index pattern to pull data from Elasticsearch, where Spark logs are stored.
+  
+- **Dashboards**: Use pre-built or custom dashboards to monitor Spark Streaming job status. Look for:
+  
+  - **Job execution time**s: To identify slow tasks or jobs.
+    
+  - **Error logs**: Filter logs to find any failures or errors in Spark jobs.
+    
+  - **Log Search**: Use Kibana’s search functionality to filter logs by time, job ID, or error type, helping to diagnose issues.
+
+### 5. Monitoring Docker Containers with Docker Desktop
+- All components (Airflow, Kafka, NiFi, Spark, Cassandra, etc.) are running in Docker containers. Docker Desktop provides a central platform to monitor the health and performance of all containers.
+  
+  - **Open Docker Desktop**: You can monitor the status of each container running in the environment from Docker Desktop.
+    
+  - **Container Health**: Check if any container is unhealthy, stopped, or restarting frequently. Each container’s resource usage (CPU, memory, and network I/O) can also be monitored.
+    
+  - **Logs**: Access real-time logs of any container to diagnose errors or failures. Logs can also be streamed to external monitoring systems like ELK or Prometheus for deeper analysis.
+    
+  - **Resource Management**: Docker Desktop provides an overview of how much CPU, RAM, and disk space each container is using. This helps in managing system resources efficiently.
+ 
+    <center>
+        <img src="image/Docker.jpg" width="900" />
+    </center>
+
+# Authors
+Nguyen Trung Nghia
+- Contact: trungnghia294@gmail.com
+- GitHub: [Ren294](https://github.com/Ren294)
+- Linkedln: [tnghia294](https://www.linkedin.com/in/tnghia294/)
 
