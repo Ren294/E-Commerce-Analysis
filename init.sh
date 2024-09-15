@@ -40,3 +40,9 @@ mkdir -p postgresDB/backup && \
 mv ecom-postgres/* postgresDB/backup/ && \
 rm -rf ecom-postgres.zip ecom-postgres
 
+echo "AIRFLOW_PROJ_DIR=./airflow
+_AIRFLOW_WWW_USER_USERNAME=ren294
+_AIRFLOW_WWW_USER_PASSWORD=ren294
+AIRFLOW_IMAGE_NAME=nghia294/ariflow-pro:v1.0
+POSTGRES_LOCAL_PATH=packages/postgresql.jar
+ELASTIC_PASSWORD=ren294" > .env
