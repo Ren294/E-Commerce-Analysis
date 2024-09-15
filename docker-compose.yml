@@ -648,6 +648,7 @@ services:
 
   jupyter-pyspar:
     image: jupyter/pyspark-notebook:python-3.11
+    container_name: jupyter-pyspark
     environment:
       JUPYTER_ENABLE_LAB: yes
       SPARK_MASTER: spark://spark-master:7077
