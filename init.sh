@@ -24,6 +24,7 @@ pip install -q kaggle
 
 kaggle datasets download -d ren294/ecommerce-clickstream-transactions && \
 unzip ecommerce-clickstream-transactions.zip -d ecommerce-clickstream-transactions && \
+mkdir -p nifi/data && \
 mv ecommerce-clickstream-transactions/* nifi/data/ && \
 rm -rf ecommerce-clickstream-transactions.zip ecommerce-clickstream-transactions
 
