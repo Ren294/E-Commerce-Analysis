@@ -145,7 +145,7 @@ The *Data Lakehouse* architecture implemented in this project leverages a range 
   
 - **Apache Kafka**: `Kafka` provides scalability, fault tolerance, and high-throughput message processing for real-time data ingestion.
   
-- **Redpanda**: Redpanda provides real-time insights into Kafka pipelines, reducing operational overhead while ensuring high availability and fault tolerance.
+- **Redpanda**: `Redpanda` provides real-time insights into `Kafka` pipelines, reducing operational overhead while ensuring high availability and fault tolerance.
 
 ## Data Processing
 
@@ -163,9 +163,9 @@ The *Data Lakehouse* architecture implemented in this project leverages a range 
 
 ## Data Analytics and Visualization
 
-- **Power BI**: `Power BI` offers interactive dashboards, real-time data visualization, and easy integration with Hive and other databases for querying large datasets.
+- **Power BI**: `Power BI` offers interactive dashboards, real-time data visualization, and easy integration with `Hive` and other databases for querying large datasets.
   
-- **Jupyter Notebooks**: `Jupyter` provides an interactive environment for exploring data, building models, and visualizing results, integrating seamlessly with Spark and MLlib.
+- **Jupyter Notebooks**: `Jupyter` provides an interactive environment for exploring data, building models, and visualizing results, integrating seamlessly with `Spark` and `MLlib`.
 
 ## Orchestration and Scheduling
 
@@ -181,7 +181,7 @@ The *Data Lakehouse* architecture implemented in this project leverages a range 
   
 - **Redpanda Monitoring**: `Redpanda`’s lightweight design offers enhanced Kafka monitoring with simplified operational complexity, making it a preferred choice for streaming workloads.
   
-- **Grafana**: `Grafana` integrates directly with Cassandra, enabling users to query and visualize data. This allows for effective real-time monitoring and data analysis from the `Cassandra` data store.
+- **Grafana**: `Grafana` integrates directly with `Cassandra`, enabling users to query and visualize data. This allows for effective real-time monitoring and data analysis from the `Cassandra` data store.
 
 # Deployment
 
@@ -256,9 +256,10 @@ To deploy and run this *Data Lakehouse* project, the following system requiremen
 - This script performs the following tasks:
   - Sets the `AIRFLOW_UID` environment variable to match the current user's ID.
   - Prepares the environment for running `Airflow` by initializing it with `Docker`.
-  - Download data from Kaggle
+  - Download data from `Kaggle`
 
 **2.3. Start the Docker Containers**
+
 - Next, bring up all the services defined in the `docker-compose` file:
 
     ```bash
@@ -268,6 +269,7 @@ To deploy and run this *Data Lakehouse* project, the following system requiremen
    - This command starts all the necessary containers for the project
 
 **2.4. Post-Deployment Configuration**
+
 - After the `Docker containers` are running, execute the `after-compose.sh` script to perform additional setup:
 
     ```bash
@@ -280,7 +282,7 @@ To deploy and run this *Data Lakehouse* project, the following system requiremen
 
 **2.5. Configure and Run Apache NiFi**
 To kick off your data processing workflows, follow these steps to configure and run Apache NiFi:
-- Open the `NiFi Web UI` by navigating to `http://localhost:8080/nifi` in your browser.
+- Open the `NiFi Web UI` by navigating to `http://localhost:8443/nifi` in your browser.
 
 - Add the [template](template/ECOM_Template.xml) for the `NiFi` workflow:
 
@@ -330,7 +332,7 @@ Once the infrastructure is set up and data is flowing through the system, you ca
   docker exec -it spark-master bash -f /opt/spark-apps/streaming/clickStreaming.sh
   ```
   
-  - This will start the Clickstream streaming job, continuously ingesting and processing real-time data as it arrives.
+  - This will start the **Clickstream streaming job**, continuously ingesting and processing real-time data as it arrives.
   
 - Run the `Log Streaming Job`:
 
@@ -342,7 +344,7 @@ Once the infrastructure is set up and data is flowing through the system, you ca
 
 **2.7. Run Apache Airflow DAGs**
 
-- Open the `Airflow Web UI` by navigating to `http://localhost:8080` in your browser
+- Open the `Airflow Web UI` by navigating to `http://localhost:6060` in your browser
 
 - Login with
 
@@ -620,9 +622,9 @@ In a complex data lakehouse architecture, monitoring the system components is es
 
 ### 1. Monitoring Batch Jobs with Airflow Web UI
 
-Airflow is used to schedule and manage batch jobs that execute the ETL (Extract, Transform, Load) pipelines. The Airflow Web UI provides a centralized interface for monitoring the execution of these jobs.
+`Airflow` is used to schedule and manage batch jobs that execute the **ETL (Extract, Transform, Load)** pipelines. The `Airflow Web UI` provides a centralized interface for monitoring the execution of these jobs.
 
-- **DAG Overview**: You will see a list of Directed Acyclic Graphs (DAGs), representing the batch jobs. Each DAG shows the last execution status: success, failure, or pending.
+- **DAG Overview**: You will see a list of **Directed Acyclic Graphs (DAGs)**, representing the batch jobs. Each DAG shows the last execution status: success, failure, or pending.
 
     <center>
         <img src="image/MonitoringDagAirflow.png" width="900" />
@@ -639,9 +641,9 @@ Airflow is used to schedule and manage batch jobs that execute the ETL (Extract,
 
 ### 2. Monitoring Kafka with Redpanda Console
 
-Kafka is used for handling real-time data streaming, and Redpanda Console offers a robust monitoring interface to observe Kafka’s performance.
+`Kafka` is used for handling real-time data streaming, and `Redpanda` Console offers a robust monitoring interface to observe `Kafka`’s performance.
 
-- **Access Redpanda Console**: Use the Redpanda UI to monitor Kafka. Redpanda Console provides visibility into Kafka topics, partitions, producers, consumers, and their latencies.
+- **Access Redpanda Console**: Use the `Redpanda UI` to monitor `Kafka`. `Redpanda Console` provides visibility into Kafka topics, partitions, producers, consumers, and their latencies.
 
     <center>
         <img src="image/RedpandaOverview.jpeg" width="900" />
@@ -663,7 +665,7 @@ Kafka is used for handling real-time data streaming, and Redpanda Console offers
 
 ### 3. Monitoring Data Flow Processors with NiFi Web UI
 
-Apache NiFi manages the flow of data through various sources and sinks in real-time. The NiFi Web UI provides an intuitive interface to monitor and manage data flows.
+Apache NiFi manages the flow of data through various sources and sinks in real-time. The `NiFi Web UI` provides an intuitive interface to monitor and manage data flows.
 
 - **Open NiFi Web UI**: Navigate to http://localhost:8443/nifi to access the NiFi dashboard (introduced in [Configure and Run Apache NiFi](#Configure-and-Run-Apache-NiFi)).
   
@@ -671,34 +673,35 @@ Apache NiFi manages the flow of data through various sources and sinks in real-t
   
 - **Data Provenance**: This feature allows you to trace the lifecycle of any data passing through the NiFi flow. It’s useful for debugging data anomalies.
   
-- **Back Pressure**: Monitor back pressure on queues to ensure data is being processed without delay. If back pressure is high, NiFi might need tuning or resource adjustments.
+- **Back Pressure**: Monitor back pressure on queues to ensure data is being processed without delay. If back pressure is high, `NiFi` might need tuning or resource adjustments.
 
 ### 4. Monitoring Spark Streaming with Kibana
 
-Spark Streaming processes real-time data and logs can be visualized and monitored using Kibana, a part of the ELK Stack (Elasticsearch, Logstash, Kibana).
+`Spark Streaming` processes real-time data and logs can be visualized and monitored using `Kibana`, a part of the **ELK Stack** (`Elasticsearch`, `Logstash`, `Kibana`).
 
-- **Access Kibana**: Open the Kibana dashboard by navigating to http://localhost:5601 (introduced in [Configure and Visualization with Kibana](#Visualization-with-Kibana)).
+- **Access Kibana**: Open the `Kibana` dashboard by navigating to http://localhost:5601 (introduced in [Configure and Visualization with Kibana](#Visualization-with-Kibana)).
   
-- **Create Index Pattern**: Create an index pattern to pull data from Elasticsearch, where Spark logs are stored.
+- **Create Index Pattern**: Create an index pattern to pull data from `Elasticsearch`, where `Spark` logs are stored.
   
-- **Dashboards**: Use pre-built or custom dashboards to monitor Spark Streaming job status. Look for:
+- **Dashboards**: Use pre-built or custom dashboards to monitor `Spark Streaming` job status. Look for:
   
   - **Job execution time**s: To identify slow tasks or jobs.
     
-  - **Error logs**: Filter logs to find any failures or errors in Spark jobs.
+  - **Error logs**: Filter logs to find any failures or errors in `Spark` jobs.
     
-  - **Log Search**: Use Kibana’s search functionality to filter logs by time, job ID, or error type, helping to diagnose issues.
+  - **Log Search**: Use `Kibana`’s search functionality to filter logs by time, job ID, or error type, helping to diagnose issues.
 
 ### 5. Monitoring Docker Containers with Docker Desktop
-- All components (Airflow, Kafka, NiFi, Spark, Cassandra, etc.) are running in Docker containers. Docker Desktop provides a central platform to monitor the health and performance of all containers.
+
+- All components (`Airflow`, `Kafka`, `NiFi`, `Spark`, `Cassandra`, etc.) are running in `Docker` containers. Docker Desktop provides a central platform to monitor the health and performance of all containers.
   
-  - **Open Docker Desktop**: You can monitor the status of each container running in the environment from Docker Desktop.
+  - **Open Docker Desktop**: You can monitor the status of each container running in the environment from `Docker Desktop`.
     
   - **Container Health**: Check if any container is unhealthy, stopped, or restarting frequently. Each container’s resource usage (CPU, memory, and network I/O) can also be monitored.
     
-  - **Logs**: Access real-time logs of any container to diagnose errors or failures. Logs can also be streamed to external monitoring systems like ELK or Prometheus for deeper analysis.
+  - **Logs**: Access real-time logs of any container to diagnose errors or failures. Logs can also be streamed to external monitoring systems like `ELK` for deeper analysis.
     
-  - **Resource Management**: Docker Desktop provides an overview of how much CPU, RAM, and disk space each container is using. This helps in managing system resources efficiently.
+  - **Resource Management**: `Docker Desktop` provides an overview of how much CPU, RAM, and disk space each container is using. This helps in managing system resources efficiently.
  
     <center>
         <img src="image/Docker.jpg" width="900" />
@@ -714,7 +717,7 @@ Spark Streaming processes real-time data and logs can be visualized and monitore
         <img src="image/ResultPowerBI-Ecom.jpeg" width="900" />
     </center>
 
-- **PowerBI for Log Ecom**: This Power BI report focuses on log data, offering detailed visualizations of web access patterns and system performance. It helps in understanding user interactions and identifying potential issues in the e-commerce system.
+- **PowerBI for Log Ecom**: This `Power BI` report focuses on log data, offering detailed visualizations of web access patterns and system performance. It helps in understanding user interactions and identifying potential issues in the e-commerce system.
 
     <center>
         <img src="image/ResultPowerBI-Logs.jpeg" width="900" />
@@ -754,13 +757,13 @@ Spark Streaming processes real-time data and logs can be visualized and monitore
 
 ## 3. Monitoring with Grafana:
 
-- **Monitoring Web Acess with Grafana**: Grafana provides a comprehensive view of web access logs, visualizing access patterns and helping monitor the performance and availability of the e-commerce site.
+- **Monitoring Web Acess with Grafana**: `Grafana` provides a comprehensive view of web access logs, visualizing access patterns and helping monitor the performance and availability of the e-commerce site.
 
     <center>
         <img src="image/Result-Grafana-Log.jpeg" width="900" />
     </center>
 
-- **Monitoring ClickStream with Grafana**: This Grafana dashboard visualizes clickstream data, tracking user interactions and navigation paths on the e-commerce platform.
+- **Monitoring ClickStream with Grafana**: This `Grafana` dashboard visualizes clickstream data, tracking user interactions and navigation paths on the e-commerce platform.
 
     <center>
         <img src="image/Result-Grafana-ClickStream.jpeg" width="900" />
@@ -768,13 +771,13 @@ Spark Streaming processes real-time data and logs can be visualized and monitore
 
 ## 4. Monitoring Spark Streaming Job with Kibana:
 
-- **Monitoring Spark Job by Visualization**: Kibana visualizes Spark job metrics and performance, providing insights into job execution and resource utilization.
+- **Monitoring Spark Job by Visualization**: `Kibana` visualizes `Spark` job metrics and performance, providing insights into job execution and resource utilization.
 
     <center>
         <img src="image/ResultKibana.jpeg" width="900" />
     </center>
 
-- **Monitoring Spark Job by individual log**: This Kibana view shows detailed logs for individual Spark jobs, assisting in troubleshooting and performance analysis.
+- **Monitoring Spark Job by individual log**: This `Kibana` view shows detailed logs for individual Spark jobs, assisting in troubleshooting and performance analysis.
 
     <center>
         <img src="image/Kibana_Log.jpeg" width="900" />
@@ -782,7 +785,7 @@ Spark Streaming processes real-time data and logs can be visualized and monitore
 
 ## 5. Monitoring Spark Job with Airflow Web UI:
 
-- **Monitoring Spark Job by Airflow Task**: Airflow Web UI offers detailed monitoring of Spark job tasks, including DAG execution, task statuses, and performance metrics.
+- **Monitoring Spark Job by Airflow Task**: `Airflow Web UI` offers detailed monitoring of `Spark` job tasks, including DAG execution, task statuses, and performance metrics.
   
     <center>
         <img src="image/Result_DAG.png" width="900" />
@@ -802,7 +805,7 @@ Spark Streaming processes real-time data and logs can be visualized and monitore
 
 ## 6. Monitoring Container with Docker Deskstop:
 
-- **Docker Container Monitoring**: Docker Desktop provides visualization and management capabilities for all Docker containers, helping monitor container performance and resource usage.
+- **Docker Container Monitoring**: `Docker Desktop` provides visualization and management capabilities for all `Docker` containers, helping monitor container performance and resource usage.
 
     <center>
         <img src="image/Result-Docker.jpeg" width="900" />
