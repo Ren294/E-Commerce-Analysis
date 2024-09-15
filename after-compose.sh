@@ -9,3 +9,5 @@ docker exec -it spark-master bash -c "service ssh start"
 docker exec -it cassandra1 /opt/cassandra/bin/cqlsh -f /home/setup/setup.cql
 
 docker exec -it spark-master bash -c "start-thriftserver.sh"
+
+docker exec -it airflow-webserver bash -f /opt/airflow/config/setup.sh
