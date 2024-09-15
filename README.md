@@ -1,6 +1,24 @@
 # BIG DATA PROJECT: Ecomerce Insights Lakehouse Project
 <span style="color:red">**WARNING:** This project only runs on ARM64 chips.</span>
 
+# Table of Contents
+
+1. **[Project Objective](#project-objective)**
+2. **[Datasets Selection](#datasets-selection)**
+3. **[System Architecture](#system-architecture)**
+   - [Data Sources](#data-sources)
+   - [Data Processing Layers](#data-processing-layers)
+   - [Storage Layer](#storage-layer)
+   - [Analytics and Reporting](#analytics-and-reporting)
+4. **[Technologies Used](#technologies-used)**
+5. **[Deployment](#deployment)**
+   - [System Requirements](#system-requirements)
+   - [Running the Project](#running-the-project)
+   - [Monitoring](#monitoring)
+6. **[Results](#results)**
+8. **[Future Work](#future-work)**
+9. **[Authors](#authors)**
+
 # Project Objective
 The goal of **Ecomerce Insights Lakehouse Project** is to design and build an end-to-end E-Commerce Data Lakehouse that integrates various data sources from PostgreSQL databases (Ecom and Marketing) and log-based data (ecommerce_clickstream_transactions and access_log_ecommerce). This architecture combines batch and real-time data processing to provide insights for data analytics, data science, and business intelligence using tools like Power BI and Jupyter Notebook. The system also monitors the data pipelines and streaming jobs using Grafana, Kibana, and other monitoring tools.
 
@@ -167,6 +185,7 @@ The Data Lakehouse architecture implemented in this project leverages a range of
 - **Grafana**: Grafana integrates directly with Cassandra, enabling users to query and visualize data. This allows for effective real-time monitoring and data analysis from the Cassandra data store.
 
 # Deployment
+
 ## System Requirements
 
 To deploy and run this Data Lakehouse project, the following system requirements are necessary:
@@ -190,6 +209,7 @@ To deploy and run this Data Lakehouse project, the following system requirements
 - **Power BI**: Installed on the host machine or on a Windows virtual machine for data visualization.
 
 ## Running the Project
+
 ### 1. Clone the Project Repository
 
 **1.1. Install Git (if not already installed)**
@@ -848,25 +868,25 @@ Spark Streaming processes real-time data and logs can be visualized and monitore
 
 - **Resource Optimization**: Optimize resource allocation and utilization to improve performance and reduce costs, particularly for cloud-based deployments.
 
-# 4. Enhanced Data Visualization
+## 4. Enhanced Data Visualization
 
 - **Interactive Dashboards**: Develop more interactive and dynamic dashboards in Power BI, Grafana, and Kibana for deeper insights and user engagement.
 
 - **Custom Alerts and Notifications**: Implement custom alerts and notifications in Grafana and Kibana to proactively monitor system health and performance metrics.
 
-# 5. Security and Compliance
+## 5. Security and Compliance
 
 - **Data Encryption**: Enhance security by implementing data encryption at rest and in transit across the data pipeline.
 
 - **Compliance Monitoring**: Introduce features to ensure compliance with data protection regulations such as GDPR and CCPA.
 
-# 6. Automation and Orchestration
+## 6. Automation and Orchestration
 
 - **Automated Data Quality Checks**: Implement automated data quality checks and validation processes to ensure data accuracy and integrity.
 
 - **Expanded Airflow DAGs**: Develop additional Airflow DAGs to automate new data workflows and integrate with additional tools and services.
 
-# 7. User Experience Enhancements
+## 7. User Experience Enhancements
 
 - **User Training**: Provide training and documentation to end-users for effectively utilizing the new dashboards and analytical tools.
 
