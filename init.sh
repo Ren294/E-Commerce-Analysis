@@ -29,5 +29,13 @@ rm -rf ecommerce-clickstream-transactions.zip ecommerce-clickstream-transactions
 
 kaggle datasets download -d ren294/access-log-ecommerce && \
 unzip access-log-ecommerce.zip -d access-log-ecommerce && \
+mkdir -p nifi/data && \
 mv access-log-ecommerce/* nifi/data/ && \
 rm -rf access-log-ecommerce.zip access-log-ecommerce
+
+kaggle datasets download -d ren294/ecom-postgres && \
+unzip ecom-postgres.zip -d ecom-postgres && \
+mkdir -p postgresDB/backup && \
+mv ecom-postgres/* postgresDB/backup/ && \
+rm -rf ecom-postgres.zip ecom-postgres
+
