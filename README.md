@@ -349,51 +349,7 @@ Once the infrastructure is set up and data is flowing through the system, you ca
   - **Username**: *ren294*
   - **Password**: *ren294*
 
-- You’ll need to set up a few essential connections for your `Spark`, `HDFS`, and `Sqoop` environments. Start by adding a new connection in the `Airflow UI` and use the following details:
-
-  - **Spark Server Connection**:
-  
-    - Connection Id: *spark_server*
-  
-    - Connection Type: *SSH*
-    
-    - Host: *spark-master*
-    
-    - User: *root*
-    
-    - Password: *ren294*
-  
-    - Port: *22*
-
-  - **HDFS Connection**:
-  
-    - Connection Id: *hdfs_server*
-  
-    - Connection Type: *SSH*
-  
-    - Host: *namenode*
-  
-    - User: *root*
-  
-    - Password: *ren294*
-  
-    - Port: *22*
- 
-  - **Sqoop Connection**:
-  
-    - Connection Id: *sqoop_server*
-  
-    - Connection Type: *SSH*
-  
-    - Host: *sqoop*
-  
-    - User: *root*
-  
-    - Password: *ren294*
-  
-    - Port: *22*
-
-- After configuring these connections, it's time to activate the **DAGs (Directed Acyclic Graphs)** that control the data workflows. The project consists of six pre-configured `DAGs`, which you can activate from the `Airflow` dashboard:
+- After login, it's time to activate the **DAGs (Directed Acyclic Graphs)** that control the data workflows. The project consists of six pre-configured `DAGs`, which you can activate from the `Airflow` dashboard:
   
     <center>
         <img src="image/DAGs.png" width="900" />
