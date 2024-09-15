@@ -725,6 +725,153 @@ Spark Streaming processes real-time data and logs can be visualized and monitore
         <img src="image/Docker.jpg" width="900" />
     </center>
 
+# Results
+
+## 1. Visualization with PowerBI
+
+- **PowerBI for DataWarehouse Ecom**: This dashboard provides an overview of e-commerce data, including key metrics and performance indicators. It visualizes data from the Data Warehouse, highlighting trends and insights into sales and customer behavior.
+
+    <center>
+        <img src="image/ResultPowerBI-Ecom.jpeg" width="900" />
+    </center>
+
+- **PowerBI for Log Ecom**: This Power BI report focuses on log data, offering detailed visualizations of web access patterns and system performance. It helps in understanding user interactions and identifying potential issues in the e-commerce system.
+
+    <center>
+        <img src="image/ResultPowerBI-Logs.jpeg" width="900" />
+    </center>
+
+- **PowerBI for ClickStream Ecom**: This visualization captures user clickstream data, providing insights into customer navigation patterns and click behavior on the e-commerce platform.
+
+    <center>
+        <img src="image/ResultPowerBI-ClickStream.jpeg" width="900" />
+    </center>
+
+## 2. Analysis with Jupyter (some Examples):
+
+- **Numbers of Orders per day**: This analysis displays the daily order volume, offering a clear view of sales trends and patterns over time.
+
+    <center>
+        <img src="image/ResultJupyter1.png" width="900" />
+    </center>
+
+- **Numbers of Orders by Day of Orders by Day of the Week and Hour of the Day**: This visualization breaks down orders by day of the week and hour of the day, revealing peak times and trends in customer purchasing behavior.
+ 
+    <center>
+        <img src="image/ResultJupyter2.png" width="900" />
+    </center>
+
+- **Top 10 cities by number of orders**: This analysis highlights the top 10 cities with the highest order volumes, providing insights into regional sales performance.
+
+    <center>
+        <img src="image/ResultJupyter3.png" width="900" />
+    </center>
+
+- **Sales by Category**: This visualization shows sales distribution across different product categories, helping identify popular and underperforming categories.
+
+    <center>
+        <img src="image/ResultJupyter4.png" width="900" />
+    </center>
+
+## 3. Monitoring with Grafana:
+
+- **Monitoring Web Acess with Grafana**: Grafana provides a comprehensive view of web access logs, visualizing access patterns and helping monitor the performance and availability of the e-commerce site.
+
+    <center>
+        <img src="image/Result-Grafana-Log.jpeg" width="900" />
+    </center>
+
+- **Monitoring ClickStream with Grafana**: This Grafana dashboard visualizes clickstream data, tracking user interactions and navigation paths on the e-commerce platform.
+
+    <center>
+        <img src="image/Result-Grafana-ClickStream.jpeg" width="900" />
+    </center>
+
+## 4. Monitoring Spark Streaming Job with Kibana:
+
+- **Monitoring Spark Job by Visualization**: Kibana visualizes Spark job metrics and performance, providing insights into job execution and resource utilization.
+
+    <center>
+        <img src="image/ResultKibana.jpeg" width="900" />
+    </center>
+
+- **Monitoring Spark Job by individual log**: This Kibana view shows detailed logs for individual Spark jobs, assisting in troubleshooting and performance analysis.
+
+    <center>
+        <img src="image/Kibana_Log.jpeg" width="900" />
+    </center>
+
+## 5. Monitoring Spark Job with Airflow Web UI:
+
+- **Monitoring Spark Job by Airflow Task**: Airflow Web UI offers detailed monitoring of Spark job tasks, including DAG execution, task statuses, and performance metrics.
+  
+    <center>
+        <img src="image/Result_DAG.png" width="900" />
+    </center>
+
+    <center>
+        <img src="image/Result-Airflow.png" width="900" />
+    </center>
+
+    <center>
+        <img src="image/Result-Airflow1.png" width="900" />
+    </center>
+
+    <center>
+        <img src="image/Result-Airflow2.png" width="900" />
+    </center>
+
+## 6. Monitoring Container with Docker Deskstop:
+
+- **Docker Container Monitoring**: Docker Desktop provides visualization and management capabilities for all Docker containers, helping monitor container performance and resource usage.
+
+    <center>
+        <img src="image/Result-Docker.jpeg" width="900" />
+    </center>
+
+# Future Work
+## 1. Enhanced Real-Time Analytics
+
+- **Improved Stream Processing**: Implement advanced real-time analytics and anomaly detection using machine learning models within Spark Streaming.
+
+- **Edge Computing**: Explore edge computing solutions to process data closer to the source, reducing latency and improving response times.
+
+## 2. Advanced Data Integration
+
+- **Additional Data Sources**: Integrate more data sources such as social media and third-party APIs to enrich the data lakehouse with diverse datasets.
+
+- **Unified Data Model**: Develop a unified data model that seamlessly integrates disparate data sources for more comprehensive analysis.
+
+## 3. Scalability and Performance Optimization
+
+- **Cluster Expansion**: Scale the Kafka, Spark, and NiFi clusters to handle increased data volumes and processing loads more efficiently.
+
+- **Resource Optimization**: Optimize resource allocation and utilization to improve performance and reduce costs, particularly for cloud-based deployments.
+
+# 4. Enhanced Data Visualization
+
+- **Interactive Dashboards**: Develop more interactive and dynamic dashboards in Power BI, Grafana, and Kibana for deeper insights and user engagement.
+
+- **Custom Alerts and Notifications**: Implement custom alerts and notifications in Grafana and Kibana to proactively monitor system health and performance metrics.
+
+# 5. Security and Compliance
+
+- **Data Encryption**: Enhance security by implementing data encryption at rest and in transit across the data pipeline.
+
+- **Compliance Monitoring**: Introduce features to ensure compliance with data protection regulations such as GDPR and CCPA.
+
+# 6. Automation and Orchestration
+
+- **Automated Data Quality Checks**: Implement automated data quality checks and validation processes to ensure data accuracy and integrity.
+
+- **Expanded Airflow DAGs**: Develop additional Airflow DAGs to automate new data workflows and integrate with additional tools and services.
+
+# 7. User Experience Enhancements
+
+- **User Training**: Provide training and documentation to end-users for effectively utilizing the new dashboards and analytical tools.
+
+- **Feedback Mechanism**: Establish a feedback mechanism to gather user input for continuous improvement of the system.
+
 # Authors
 Nguyen Trung Nghia
 - Contact: trungnghia294@gmail.com
