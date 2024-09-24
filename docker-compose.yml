@@ -458,7 +458,7 @@ services:
       - all
 
   spark-master:
-    image: nghia294/spark-arm64:v6.0
+    image: nghia294/spark-arm64:v8.0
     container_name: spark-master
     hostname: spark-master
     depends_on:
@@ -495,7 +495,7 @@ services:
       - all
 
   spark-worker-1:
-    image: nghia294/spark-arm64:v6.0
+    image: nghia294/spark-arm64:v8.0
     container_name: spark-worker
     depends_on:
       - spark-master
