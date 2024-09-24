@@ -5,8 +5,8 @@ ENV_FILE=".env"
 NEW_UID=$(id -u)
 
 if [ -f "$ENV_FILE" ]; then
-  sed -i '/^AIRFLOW_UID=/d' "$ENV_FILE"
-  
+  sed -i '' '/^AIRFLOW_UID=/d' "$ENV_FILE"
+
   echo "AIRFLOW_UID=$NEW_UID" >> "$ENV_FILE"
 else
   echo "AIRFLOW_UID=$NEW_UID" > "$ENV_FILE"
@@ -45,4 +45,4 @@ _AIRFLOW_WWW_USER_USERNAME=ren294
 _AIRFLOW_WWW_USER_PASSWORD=ren294
 AIRFLOW_IMAGE_NAME=nghia294/ariflow-pro:v1.0
 POSTGRES_LOCAL_PATH=packages/postgresql.jar
-ELASTIC_PASSWORD=ren294" > .env
+ELASTIC_PASSWORD=ren294" >> .env
