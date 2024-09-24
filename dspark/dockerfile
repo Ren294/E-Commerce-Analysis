@@ -42,6 +42,8 @@ RUN update-alternatives --install "/usr/bin/python" "python" "$(which python3)" 
 
 COPY spark-3.2.0-bin-hadoop3.2 /opt/spark
 
+RUN pip install hdfs
+
 RUN $SPARK_HOME/bin/spark-shell --packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.2.0,org.apache.kafka:kafka-clients:3.2.0,io.delta:delta-spark_2.12:3.2.0 -i /dev/null
 
 WORKDIR /opt/spark
