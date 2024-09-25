@@ -32,6 +32,9 @@ RUN echo 'root:ren294' | chpasswd && \
     sed -i 's/#PasswordAuthentication yes/PasswordAuthentication yes/' /etc/ssh/sshd_config && \
     service ssh restart
 
+RUN mkdir -p /root/.ssh
+RUN echo "StrictHostKeyChecking no" >> /root/.ssh/config
+
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-arm64
 ENV SPARK_VERSION=3.2.0 \
     HADOOP_VERSION=3.2 \
@@ -44,7 +47,13 @@ COPY spark-3.2.0-bin-hadoop3.2 /opt/spark
 
 RUN pip install hdfs
 
+RUN pip install delta-spark==2.0.0
+
 RUN $SPARK_HOME/bin/spark-shell --packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.2.0,org.apache.kafka:kafka-clients:3.2.0,io.delta:delta-spark_2.12:3.2.0 -i /dev/null
+
+COPY delta-core_2.12-2.0.0.jar /opt/spark/jars/
+
+COPY delta-storage-2.0.0.jar /opt/spark/jars/
 
 WORKDIR /opt/spark
 ENV SPARK_MASTER_PORT=7077 \
