@@ -27,16 +27,19 @@ The goal of **Ecomerce Insights Lakehouse Project** is to design and build an en
 ## 1. Brazilian E-Commerce Public Dataset by Olist and Marketing Funnel by Olist
 
 ### 1.1. Brazilian E-Commerce Public Dataset by Olist
+
 - Source: [Brazilian E-Commerce Public Dataset by Olist](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)
 
 This dataset was generously provided by **Olist**, the largest warehouse in the **Brazilian markets**. Olist connects small businesses across Brazil to channels seamlessly and with a single contract. These merchants can sell their products through Olist Store and ship them directly to customers using Olist's logistics partners.
 
 ### 1.2. Marketing Funnel by Olist
+
 - Source: [Marketing Funnel by Olist](https://www.kaggle.com/datasets/olistbr/marketing-funnel-olist)
 
 This is a marketing funnel dataset from sellers that filled-in requests of contact to sell their products on Olist Store. The dataset has information of 8k Marketing Qualified Leads (MQLs) that requested contact between *Jun. 1st 2017* and *Jun 1st 2018*. They were randomly sampled from the total of MQLs.
 
 ### 1.3 Join two Dataset and import to PostgresDB
+- Source: [E-Commerce PostgresDB](https://www.kaggle.com/datasets/ren294/ecom-postgres)
 
 Both the **Brazilian E-Commerce Public Dataset** and the **Marketing Funnel by Olist** were imported into a `PostgreSQL` database to form the foundation of the project's data warehouse. The resulting schema integrates customer transactions with lead generation efforts, providing a holistic view of e-commerce operations and marketing strategies.
 
@@ -55,7 +58,6 @@ This dataset provides simulated data for user interactions on an e-commerce plat
 The **Access Log E-Commerce** dataset simulates server logs that detail user interactions with the e-commerce platform at the backend. Each log entry provides metadata such as timestamp, IP address, request type, status codes, and other parameters commonly found in server access logs.
 
 # System Architecture
-
 The **Data Lakehouse** architecture implemented in this project is meticulously designed to accommodate both batch and real-time streaming data, seamlessly integrating multiple data sources into a cohesive analytics platform. This architecture follows the `Medallion Architecture` pattern, which organizes data into **Bronze**, **Silver**, and **Gold layers**, each serving specific roles in the data lifecycle. 
 
 ## System Overview
@@ -356,13 +358,13 @@ Once the infrastructure is set up and data is flowing through the system, you ca
   - **Username**: *ren294*
   - **Password**: *ren294*
 
-- After login, it's time to activate the **DAGs (Directed Acyclic Graphs)** that control the data workflows. The project consists of six pre-configured `DAGs`, which you can activate from the `Airflow` dashboard:
+- After login, it's time to activate the **DAGs (Directed Acyclic Graphs)** that control the data workflows. The project consists of ten pre-configured `DAGs`, which you can activate from the `Airflow` dashboard:
   
     <center>
         <img src="image/Dags.png" width="900" />
     </center>
 
-Here are the six DAGs and their respective functions:  
+Here are the ten DAGs and their respective functions:  
 
   - **`Import_Ecom_data_to_Bronze_State_using_SQOOP`**: This **DAG** facilitates the extraction of e-commerce data from PostgreSQL and ingests it into the **Bronze layer** via `Sqoop`.
 
@@ -400,6 +402,30 @@ Here are the six DAGs and their respective functions:
         <img src="image/Log_from_Silver_to_Gold_with_Hive.png" width="900" />
     </center> 
 
+  - **Ecom_Optimization_DataWarehouse**: This DAG optimizes the e-commerce data warehouse by compacting data, refining partitioning, and gathering statistics in the **Gold layer** to enhance query performance.
+
+    <center>
+        <img src="image/Ecom_Optimization_DataWarehouse.png" width="900" />
+    </center> 
+
+  - **Log_Optimization_Clickstream_Log**: This DAG optimizes the storage and indexing of clickstream log data in the **Gold layer**, improving retrieval times and ensuring efficient analytics.
+
+    <center>
+        <img src="image/Log_Optimization_Clickstream_Log.png" width="900" />
+    </center> 
+
+  - **Ecom_Vacuum_DataWarehouse**: This DAG vacuums the e-commerce data warehouse to reclaim storage space and improve performance by removing obsolete data.
+
+    <center>
+        <img src="image/Ecom_Vacuum_DataWarehouse.png" width="900" />
+    </center> 
+
+  - **Log_Vacuum_Clickstream_Log**: This DAG vacuums the clickstream logs in the Gold layer, clearing redundant data to optimize storage and maintain query performance.
+
+     <center>
+        <img src="image/Log_Vacuum_Clickstream_Log.png" width="900" />
+    </center>   
+    
 ### 3. Visualization for PowerBI
 
 To visualize and analyze your processed data, follow these detailed steps to set up `Power BI` and connect it to your `Hive` data warehouse:
