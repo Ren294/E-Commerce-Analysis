@@ -61,7 +61,7 @@ The **Data Lakehouse** architecture implemented in this project is designed to h
 The system is divided into several components, each responsible for specific tasks within the data process:
 
   <center>
-      <img src="image/architecture.png" width="1200" />
+      <img src="image/Architecture.png" width="1200" />
   </center>
 
 ## Data Sources
@@ -354,7 +354,7 @@ Once the infrastructure is set up and data is flowing through the system, you ca
 - After login, it's time to activate the **DAGs (Directed Acyclic Graphs)** that control the data workflows. The project consists of six pre-configured `DAGs`, which you can activate from the `Airflow` dashboard:
   
     <center>
-        <img src="image/DAGs.png" width="900" />
+        <img src="image/Dags.png" width="900" />
     </center>
 
 Here are the six DAGs and their respective functions:  
