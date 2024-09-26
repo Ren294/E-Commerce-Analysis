@@ -56,7 +56,9 @@ The **Access Log E-Commerce** dataset simulates server logs that detail user int
 
 # System Architecture
 
-The **Data Lakehouse** architecture implemented in this project is designed to handle both batch and real-time streaming data, integrating multiple data sources into a cohesive analytics platform. 
+The **Data Lakehouse** architecture implemented in this project is meticulously designed to accommodate both batch and real-time streaming data, seamlessly integrating multiple data sources into a cohesive analytics platform. This architecture follows the `Medallion Architecture` pattern, which organizes data into **Bronze**, **Silver**, and **Gold layers**, each serving specific roles in the data lifecycle. 
+
+## System Overview
 
 The system is divided into several components, each responsible for specific tasks within the data process:
 
@@ -89,7 +91,7 @@ The system processes data in distinct layers, each serving a different purpose i
 
 - **Transformation**: Once ingested into the **Bronze layer**, the data is processed by `Apache Spark` to clean, enrich, and transform it into more structured formats. This refined data is then stored in the **Silver layer** of the *Data Lakehouse*.
 
-- **Storage**: The transformed data is stored in `HDFS` in the **Silver layer**, with subsequent writes to the **Gold layer** for highly structured, query-optimized data in `Hive` using the `Parquet` format. This is the final stage of batch processing and provides a robust foundation for analytics.
+- **Storage**: The transformed data is stored in `HDFS` in the **Silver layer** as `Parquet` files, providing an efficient storage format for analytics. The data is then further processed and written to the **Gold layer**, which utilizes `Delta Lake` and `Hive` for highly structured, query-optimized data. This layer is designed for high performance in analytical queries and is the final stage of batch processing.
 
 ### 2. Streaming Layer
 - **Real-Time Ingestion**: Streaming data from *ecommerce_clickstream_transactions* and *access_log_ecommerce* is ingested into the system using `Apache NiFi` and published to `Kafka` topics.
@@ -103,9 +105,10 @@ The storage layer follows a **Bronze-Silver-Gold** tiered model, where data tran
 
 - **Bronze Layer**: Raw, unprocessed data from various sources, such as `PostgreSQL` and log files, is stored in `HDFS`. This is the initial ingestion layer, where data is kept in its original form.
 
-- **Silver Layer**: Processed and cleaned data, suitable for analytics and machine learning, is stored in `HDFS`. This layer serves as a refined dataset for further querying and model building.
+- **Silver Layer**: Here, processed and cleaned data is stored as `Parquet` files in `HDFS`. This layer is tailored for analytics and machine learning, providing a refined dataset for querying and model building.
 
-- **Gold Layer**: Highly optimized and structured data stored in `Hive` in the `Parquet` format. This layer is query-ready and used for reporting and BI tools such as `Power BI`.
+- **Gold Layer**: The Gold layer features highly optimized and structured data, utilizing `Delta Lake` and `Hive`. This layer is designed for high performance and efficient querying, making it ideal for reporting and business intelligence tools such as `Power BI`.
+
 
 ## Analytics and Reporting
 
@@ -158,12 +161,14 @@ The *Data Lakehouse* architecture implemented in this project leverages a range 
 - **Hadoop Distributed File System (HDFS)**: `HDFS` offers distributed storage, fault tolerance, and scalability for managing large volumes of data.
   
 - **Apache Hive**: `Hive` provides data warehousing capabilities, schema-on-read, and efficient querying through the use of optimized storage formats like `Parquet`.
+
+- **Delta Lake**: `Delta Lake` brings ACID transaction capabilities and schema enforcement to data lakes, enabling reliable data management and simplifying the process of building a data pipeline.
   
 - **Apache Cassandra**: `Cassandra` offers high throughput for real-time data storage, horizontal scalability, and fault tolerance.
 
 ## Data Analytics and Visualization
 
-- **Power BI**: `Power BI` offers interactive dashboards, real-time data visualization, and easy integration with `Hive` and other databases for querying large datasets.
+- **Power BI**: `Power BI` offers interactive dashboards, real-time data visualization, and easy integration with `Hive` , `Delta Lake`, and other databases for querying large datasets.
   
 - **Jupyter Notebooks**: `Jupyter` provides an interactive environment for exploring data, building models, and visualizing results, integrating seamlessly with `Spark` and `MLlib`.
 
